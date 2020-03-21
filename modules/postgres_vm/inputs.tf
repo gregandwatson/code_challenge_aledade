@@ -5,3 +5,7 @@ variable "image_id" {
 variable "instance_type" {
   default = ""
 }
+
+variable "vpc_subnet_id" {
+  default = ""
+}
