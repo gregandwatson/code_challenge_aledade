@@ -1,0 +1,5 @@
+vars/main.yml
+---
+db_user: dbusername
+db_name: dbname
+db_password: dbpassword
