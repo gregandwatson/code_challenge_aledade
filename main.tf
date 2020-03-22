@@ -8,7 +8,7 @@ module "${var.env_id}_postgres_instance" {
                   sudo yum -y install python
                   EOF
   provisioner "local-exec" {
-    command = "ansible-playbook -u fedora -i '${self.public_ip},' --private-key ${var.ssh_key_private} postgres.yml"
+    command = "ansible-playbook -u fedora -i '${self.public_ip},' --private-key ${var.ssh_key_private} local."${var.env_id}".playbook"
   }
 }
 
