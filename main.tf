@@ -2,6 +2,16 @@ module "${var.env_id}_postgres_instance" {
   source = "modules/postgres_vm"
   instance_type = local."${var.env_id}".instance_type
   image_id	= local."${var.env_id}".image_id
+  user_data    = <<-EOF
+                  #!/bin/bash
+                  sudo yum -y update
+                  sudo yum -y install epel-repo
+                  sudo yum -y update
+                  yum -y install ansible
+                  EOF
+  provisioner "local-exec" {
+    command = "ansible-playbook -u fedora -i '${self.public_ip},' --private-key ${var.ssh_key_private} postgres.yml"
+  }
 }
 
 module "${var.env_id}_vpc" {
