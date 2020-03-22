@@ -1,5 +1,8 @@
 vars/main.yml
 ---
-db_user: dbusername
-db_name: dbname
+db_user_admin: admin
+db_user_service1: service1
+db_user01: user1
+db_user02: user2
+db_name: db1
 db_password: dbpassword
