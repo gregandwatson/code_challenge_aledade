@@ -1,40 +1,34 @@
-module "${var.env_id}_postgres_instance" {
-  source = "modules/postgres_vm"
-  instance_type = local."${var.env_id}".instance_type
-  image_id	= local."${var.env_id}".image_id
-  user_data    = <<-EOF
-                  #!/bin/bash
-                  sudo yum -y update
-                  sudo yum -y install python
-                  EOF
-  provisioner "local-exec" {
-    command = "ansible-playbook -u fedora -i '${self.public_ip},' --private-key ${var.ssh_key_private} local."${var.env_id}".playbook"
-  }
+module "postgres_instance" {
+  source = "./modules/postgres_vm"
+  instance_type = local.env.instance_type
+  image_id	= local.env.image_id
+  postgres_playbook = local.env.playbook
+  ssh_key_private = "~/.ssh.id_rsa"
 }
 
-module "${var.env_id}_vpc" {
-  source = "modules/vpc"
-  vpc_cidr_block = local."${var.env_id}".vpc_cidr_block
-  subnet_cidr_block = local."${var.env_id}".subnet_cidr_block
+module "vpc" {
+  source = "./modules/vpc"
+  vpc_cidr_block = local.env.vpc_cidr_block
+  subnet_cidr_block = local.env.subnet_cidr_block
 }
 
-
-resource "aws_security_group" "allow_ssh" {
-  name        = "allow_ssh"
-  description = "Allow SSH inbound traffic"
-  vpc_id      = "${aws_vpc.greg-ohio-test.id}"
-
-  ingress {
-    # TLS (change to whatever ports you need)
-    from_port = 22
-    to_port   = 22
-    protocol  = "tcp"
-
-    # Please restrict your ingress to only necessary IPs and ports.
-    # Opening to 0.0.0.0/0 can lead to security vulnerabilities.
-    cidr_blocks = ["74.83.20.195/32"]
-  }
-}
+//
+// resource "aws_security_group" "allow_ssh" {
+//   name        = "allow_ssh"
+//   description = "Allow SSH inbound traffic"
+//   vpc_id      = "${aws_vpc.greg-ohio-test.id}"
+//
+//   ingress {
+//     # TLS (change to whatever ports you need)
+//     from_port = 22
+//     to_port   = 22
+//     protocol  = "tcp"
+//
+//     # Please restrict your ingress to only necessary IPs and ports.
+//     # Opening to 0.0.0.0/0 can lead to security vulnerabilities.
+//     cidr_blocks = ["74.83.20.195/32"]
+//   }
+// }
 
 resource "aws_key_pair" "veronika" {
   key_name   = "veronika-key"
