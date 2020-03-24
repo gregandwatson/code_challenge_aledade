@@ -1,5 +1,5 @@
-variable "env_id" {
-  default = "dev"
+variable "cluster_id" {
+  default = "prod"
 }
 
 variable "vpc_cidr_block" {
@@ -15,5 +15,13 @@ variable "image_id" {
 }
 
 variable "instance_type" {
+  default = ""
+}
+
+variable "postgres_playbook" {
+  default = ""
+}
+
+variable "ssh_key_private" {
   default = ""
 }
