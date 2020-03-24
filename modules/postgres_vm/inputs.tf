@@ -9,3 +9,11 @@ variable "instance_type" {
 variable "vpc_subnet_id" {
   default = ""
 }
+
+variable "postgres_playbook" {
+  default = ""
+}
+
+variable "ssh_key_private" {
+  default = ""
+}
