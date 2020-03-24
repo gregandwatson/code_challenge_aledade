@@ -4,7 +4,7 @@ postgres_playbook.yml
   hosts: dbserver
   sudo: yes
   sudo_user: root
-  remote_user: ubuntu
+  remote_user: ec2-user
   vars_files:
     - vars/main.yml
 
