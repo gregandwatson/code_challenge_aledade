@@ -7,6 +7,7 @@ locals {
       instance_type = "t2.micro"
       image_id	= "ami-66506c1c"
       playbook = "postgres-dev.yml"
+      max_conns = "20"
     }
     prod = {
       vpc_cidr_block = "10.2.0.0/16"
@@ -14,6 +15,7 @@ locals {
       instance_type = "t2.micro"
       image_id	= "ami-66506c1c"
       playbook = "postgres-prod.yml"
+      max_conns = "30"
     }
 }
 
