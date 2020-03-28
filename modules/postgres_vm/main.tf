@@ -8,6 +8,6 @@ resource "aws_instance" "main" {
                   sudo yum -y install python
                   EOF
   provisioner "local-exec" {
-    command = "ansible-playbook -u fedora -i '${aws_instance.main.public_ip},' --private-key ${var.ssh_key_private} ${var.postgres_playbook}"
+    command = "ansible-playbook -u ec2-user -i '${aws_instance.main.public_ip},' --private-key ${var.ssh_key_private} ${var.postgres_playbook}"
   }
 }
