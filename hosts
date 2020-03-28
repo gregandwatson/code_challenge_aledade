@@ -1,0 +1,11 @@
+[dev-dbserver]
+host1
+
+[dev-dbserver:vars]
+max_connections=20
+
+[prod-dbserver]
+host2
+
+[prod-dbserver:vars]
+max_connections=30
