@@ -41,3 +41,15 @@
   postgresql_user: name={{ db_user_service1 }}
                role_attr_flags=NOSUPERUSER,NOCREATEDB
                state=present
+- name: Make Postgres cluster directory
+  command: mkdir /usr/local/pgsql
+
+- name: Change ownership
+  command: chown postgres /usr/local/pgsql
+
+- name: Initialize Postgres DB cluster
+  command: initdb -D /usr/local/pgsql/data
+
+- name: copy Postgres config file
+  template: src=templates/posgres.conf.j2 dest=
+    mode=0644
