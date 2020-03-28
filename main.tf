@@ -38,7 +38,9 @@ resource "aws_key_pair" "veronika" {
 data "template_file" "hosts" {
   template = file("host.tpl")
   vars = {
-    dev_ip = module.postgres_instance.postgres_public_ip
+    host_ip = module.postgres_instance.postgres_public_ip
+    env = ${var.cluster_id}
+    max_conns = local.env.max_conns
   }
 }
 
