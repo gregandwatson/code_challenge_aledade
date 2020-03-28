@@ -1,7 +1,7 @@
 postgres_playbook.yml
 ---
 - name: Create a PostgreSQL DB server
-  hosts: dbserver
+  hosts: prod-dbserver
   sudo: yes
   sudo_user: root
   remote_user: ec2-user
@@ -9,4 +9,4 @@ postgres_playbook.yml
     - vars/main.yml
 
   roles:
-  - postgres
+  - roles/postgres
