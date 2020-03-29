@@ -4,16 +4,16 @@ locals {
     dev = {
       vpc_cidr_block = "10.1.0.0/16"
       subnet_cidr_block   = "10.1.1.0/24"
-      instance_type = "t2.micro"
-      image_id	= "ami-66506c1c"
+      instance_type = "i3.large"
+      image_id	= "ami-4bf3d731"
       playbook = "postgres-dev.yml"
       max_conns = "20"
     }
     prod = {
       vpc_cidr_block = "10.2.0.0/16"
       subnet_cidr_block   = "10.2.1.0/24"
-      instance_type = "t2.micro"
-      image_id	= "ami-66506c1c"
+      instance_type = "i3.xlarge"
+      image_id	= "ami-4bf3d731"
       playbook = "postgres-prod.yml"
       max_conns = "30"
     }
