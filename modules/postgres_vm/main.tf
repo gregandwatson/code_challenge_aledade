@@ -10,4 +10,5 @@ resource "aws_instance" "main" {
   provisioner "local-exec" {
     command = "ansible-playbook -u ec2-user -i '${aws_instance.main.public_ip},' --private-key ${var.ssh_key_private} ${var.postgres_playbook}"
   }
+  key_name = "${var.keypair_name}"
 }
