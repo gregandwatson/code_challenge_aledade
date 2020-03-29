@@ -3,6 +3,7 @@ module "postgres_instance" {
   instance_type = local.env.instance_type
   image_id	= local.env.image_id
   postgres_playbook = local.env.playbook
+  keypair_name = aws_key_pair.veronika.key_name
   ssh_key_private = "~/.ssh.id_rsa"
 }
 
