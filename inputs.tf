@@ -1,4 +1,4 @@
-variable "cluster_id" {
+variable "environment_id" {
   default = "prod"
 }
 
