@@ -20,6 +20,6 @@ locals {
 }
 
 env = merge(
-    local.environment[var.cluster_id]
+    local.environment[var.environment_id]
     )
 }
