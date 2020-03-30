@@ -25,3 +25,7 @@ variable "postgres_playbook" {
 variable "ssh_key_private" {
   default = ""
 }
+
+variable "public_key" {
+  default = ""
+}
